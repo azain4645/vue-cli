@@ -1,9 +1,14 @@
 <template>
   <nav>
     <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
+    <router-link to="/about">About</router-link> |
+    <router-link to="/article/108">記事</router-link>
   </nav>
-  <router-view/>
+  <router-view v-slot="{Component}">
+    <transition>
+      <component v-bind:is="Component"></component>
+    </transition>
+  </router-view>
 </template>
 
 <style>
@@ -26,5 +31,14 @@ nav a {
 
 nav a.router-link-exact-active {
   color: #42b983;
+}
+
+.v-leave-active,
+.v-enter-active {
+  transition: opacity 1s;
+}
+.v-enter,
+.v-leave-to {
+  opacity: 0;
 }
 </style>
